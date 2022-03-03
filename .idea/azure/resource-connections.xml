@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="connections">
+    <connection type="Azure.Storage:Jetbrains.IJModule" envPrefix="AZURE_STORAGE">
+      <resource type="Azure.Storage">8213bf3ed0b71786a98ca5ffae58cdef</resource>
+      <consumer type="Jetbrains.IJModule">connection</consumer>
+    </connection>
+  </component>
+</project>
