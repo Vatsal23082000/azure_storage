@@ -27,7 +27,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
+import java.io.IOException;Eg
 import java.util.*;
 import java.util.List;
 
@@ -139,14 +139,14 @@ public static class LineChartExample extends JFrame {
 
 
         public static void testCall() {
-
-            String clientId = "5f52ade6-0fd1-4b73-b0c7-4a22e8e9daf2";
             String tenant = "f636e1c4-18a5-4f8a-9e41-e247bae1387d";
+            String clientId = "5f52ade6-0fd1-4b73-b0c7-4a22e8e9daf2";
+                //String Id = "/subscriptions/3ddda1c7-d1f5-4e7b-ac81-0523f483b3b3/resourceGroups/juhig/providers/Microsoft.Storage/storageAccounts/juhig";
             String passwd = "OOS~.VExdru9djm5CV4F~z7u1rEI0CvphJ";
             String sub = "3ddda1c7-d1f5-4e7b-ac81-0523f483b3b3";
 
-        /*
-        Scanner sc1 = new Scanner(System.in);
+
+     /*   Scanner sc1 = new Scanner(System.in);
         System.out.print("Enter the Client Id: ");
         String clientId = sc1.nextLine();
         System.out.print("Enter the Password: ");
@@ -154,16 +154,18 @@ public static class LineChartExample extends JFrame {
         String passwd = sc2.nextLine();
         System.out.print("Enter Subscription Id: ");
         Scanner sc4 = new Scanner(System.in);
-        String sub = sc4.nextLine();
-        System.out.print("Enter Resource Id: ");
-        Scanner sc5 = new Scanner(System.in);
-        String Id = sc5.nextLine();
-        */
+        String sub = sc4.nextLine();*/
+
+            System.out.print("Enter Resource name: ");
+            Scanner sc5 = new Scanner(System.in);
+            String Id1 = sc5.nextLine();
+            String Id= "/subscriptions/3ddda1c7-d1f5-4e7b-ac81-0523f483b3b3/resourceGroups/" + Id1 + "/providers/Microsoft.Storage/storageAccounts/" +Id1;
+
 
             AzureProfile profile = new AzureProfile(tenant, sub, com.azure.core.management.AzureEnvironment.AZURE);//AzureProfile(tenant,sub,AzureEnvironment.AZURE);
             ApplicationTokenCredentials crede = new ApplicationTokenCredentials(clientId, tenant, passwd, AzureEnvironment.AZURE);
             Azure azure = Azure.authenticate(crede).withSubscription("3ddda1c7-d1f5-4e7b-ac81-0523f483b3b3");
-            String Id = "/subscriptions/3ddda1c7-d1f5-4e7b-ac81-0523f483b3b3/resourceGroups/juhig/providers/Microsoft.Storage/storageAccounts/juhig";
+
             DateTime record = DateTime.now();
             System.out.println("Enter a Metrics Name from Availability, Egress, Ingress, Success E2E Latency, Success Server Latency, Transactions");
             Scanner s = new Scanner(System.in);
@@ -191,6 +193,8 @@ public static class LineChartExample extends JFrame {
                             .endsBefore(record)
                             .withAggregation(arg)
                             .withInterval(Period.minutes(eco))
+                            //.withOdataFilter("responseType ne 'Success'")
+                            //.withOdataFilter("apiName eq 'PutBlob' and responseType eq 'Success' and geoType eq 'Primary'")
                             .execute();
                     System.out.println("Metrics for '" + Id + "':");
                     System.out.println("Namespacse: " + metricCollection.namespace());
